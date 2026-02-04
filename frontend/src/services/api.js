@@ -1,4 +1,4 @@
-import { API_BASE_URL } from '../config'; // Ensure you have this or use process.env
+// Use the VITE_ env var directly if config file doesn't exist, or standard approach
 
 // Use the VITE_ env var directly if config file doesn't exist, or standard approach
 const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/';
