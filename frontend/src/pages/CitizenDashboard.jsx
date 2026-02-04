@@ -15,12 +15,16 @@ const CitizenDashboard = () => {
     };
 
     const loadAlerts = async () => {
-        const data = await fetchAlerts();
-        setAlerts(data);
+        try {
+            const data = await fetchAlerts();
+            setAlerts(data);
 
-        // Determine status based on recent severe alerts
-        const hasSevere = data.some(a => a.severe);
-        setStatus(hasSevere ? 'DANGER' : 'SAFE');
+            // Determine status based on recent severe alerts
+            const hasSevere = data.some(a => a.severe);
+            setStatus(hasSevere ? 'DANGER' : 'SAFE');
+        } catch (error) {
+            console.error("Failed to load alerts", error);
+        }
     };
 
     useEffect(() => {

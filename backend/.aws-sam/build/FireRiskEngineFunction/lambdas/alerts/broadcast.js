@@ -1,8 +1,8 @@
 const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
 const { DynamoDBDocumentClient, PutCommand, ScanCommand } = require("@aws-sdk/lib-dynamodb");
 const { SNSClient, PublishCommand } = require("@aws-sdk/client-sns");
-const { randomUUID } = require('crypto');
-const uuidv4 = randomUUID;
+// Simple ID generator
+const uuidv4 = () => Date.now().toString();
 
 const client = new DynamoDBClient({});
 const docClient = DynamoDBDocumentClient.from(client);

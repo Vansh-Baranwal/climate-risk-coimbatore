@@ -8,8 +8,12 @@ async function debugAlerts() {
     try {
         const res = await fetch(`${BASE_URL}alerts`);
         const data = await res.json();
-        console.log("Current Alerts:", data.length);
-        if (data.length > 0) console.log(data[0]);
+        if (data.length !== undefined) {
+            console.log("Current Alerts:", data.length);
+            if (data.length > 0) console.log(data[0]);
+        } else {
+            console.log("Response IS NOT ARRAY:", data);
+        }
     } catch (e) {
         console.log("Fetch Error:", e);
     }
