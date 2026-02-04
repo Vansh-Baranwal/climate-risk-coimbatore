@@ -1,10 +1,5 @@
 version: 1
-backend:
-  phases:
-    build:
-      commands:
-        - npm install -g aws-sam-cli
-        - sam build
+
 frontend:
   phases:
     preBuild:
