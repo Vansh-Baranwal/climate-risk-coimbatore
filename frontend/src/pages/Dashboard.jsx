@@ -88,9 +88,11 @@ const Dashboard = () => {
             type: "FLOOD",
             message: `CRITICAL FLOOD ALERT IN ZONE ${selectedZone.id} (${selectedZone.name}). EVACUATE LOW GROUND.`,
             zoneId: selectedZone.id,
-            severe: true
+            severe: true,
+            temp: weather.normalized.temp,
+            rain: weather.normalized.rainfall_1h
         });
-        alert("Flood Simulated & Alert Broadcasted to Network!");
+        alert("Flood Simulated & Alert Broadcasted to Network (SMS/Email)!");
     };
 
     useEffect(() => {

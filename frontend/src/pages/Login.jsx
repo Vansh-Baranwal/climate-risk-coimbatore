@@ -7,6 +7,8 @@ const Login = () => {
     const [view, setView] = useState('SELECT_ROLE'); // SELECT_ROLE, ADMIN_LOGIN, CITIZEN_LOGIN, SIGNUP
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
+    const [mobile, setMobile] = useState('');
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
@@ -14,6 +16,8 @@ const Login = () => {
     const resetForm = () => {
         setUsername('');
         setPassword('');
+        setEmail('');
+        setMobile('');
         setError(null);
         setLoading(false);
     };
