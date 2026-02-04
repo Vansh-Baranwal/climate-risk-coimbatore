@@ -51,6 +51,22 @@ export const calculateDiseaseRisk = async (weather, zone) => {
     }
 };
 
+// --- DELAYED RISK ---
+
+export const fetchTimeline = async (stagnationDays) => {
+    try {
+        const res = await fetch(`${BASE_URL}risk/delayed/evaluate`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ stagnationDays })
+        });
+        return await res.json();
+    } catch (e) {
+        console.error(e);
+        return { timeline: [] };
+    }
+};
+
 // --- AUTH & ALERTS ---
 
 export const loginUser = async (username, password) => {
