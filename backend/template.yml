@@ -173,8 +173,12 @@ Resources:
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref UsersTable
-        - SNSCrudPolicy:
-            TopicName: !GetAtt ClimateRiskAlertsTopic.TopicName
+        - Statement:
+            - Effect: Allow
+              Action:
+                - sns:Subscribe
+                - sns:Publish
+              Resource: !Ref ClimateRiskAlertsTopic
       Environment:
         Variables:
           USERS_TABLE: !Ref UsersTable
@@ -196,8 +200,11 @@ Resources:
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref AlertsTable
-        - SNSCrudPolicy:
-            TopicName: !GetAtt ClimateRiskAlertsTopic.TopicName
+        - Statement:
+            - Effect: Allow
+              Action:
+                - sns:Publish
+              Resource: !Ref ClimateRiskAlertsTopic
       Environment:
         Variables:
           ALERTS_TABLE: !Ref AlertsTable
