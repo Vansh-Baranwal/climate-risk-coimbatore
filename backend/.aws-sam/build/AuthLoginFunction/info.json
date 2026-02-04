@@ -1,0 +1,53 @@
+{
+    "Stacks": [
+        {
+            "StackId": "arn:aws:cloudformation:ap-south-1:186196308670:stack/climate-risk-backend/07e08220-0163-11f1-8c77-02ef21d1073f",
+            "StackName": "climate-risk-backend",
+            "ChangeSetId": "arn:aws:cloudformation:ap-south-1:186196308670:changeSet/samcli-deploy1770193648/b96447a5-c9f6-4248-ab9d-d3a1d9a056c6",
+            "Description": "Climate Risk Intelligence System for Coimbatore Backend services for disaster amplification visualization.\n",
+            "Parameters": [
+                {
+                    "ParameterKey": "OpenWeatherApiKey",
+                    "ParameterValue": "****"
+                }
+            ],
+            "CreationTime": "2026-02-04T00:47:07.140000+00:00",
+            "LastUpdatedTime": "2026-02-04T08:27:47.853000+00:00",
+            "RollbackConfiguration": {},
+            "StackStatus": "UPDATE_COMPLETE",
+            "DisableRollback": true,
+            "NotificationARNs": [],
+            "Capabilities": [
+                "CAPABILITY_IAM"
+            ],
+            "Outputs": [
+                {
+                    "OutputKey": "ApiURL",
+                    "OutputValue": "https://m43xqfbhfb.execute-api.ap-south-1.amazonaws.com/dev/",
+                    "Description": "API Gateway endpoint URL for Dev stage"
+                },
+                {
+                    "OutputKey": "S3BucketName",
+                    "OutputValue": "climate-risk-coimbatore-frontend-186196308670",
+                    "Description": "S3 Bucket for Frontend"
+                },
+                {
+                    "OutputKey": "FrontendURL",
+                    "OutputValue": "d2dhrnvz9hw3st.cloudfront.net",
+                    "Description": "CloudFront Distribution URL"
+                }
+            ],
+            "Tags": [],
+            "EnableTerminationProtection": false,
+            "DriftInformation": {
+                "StackDriftStatus": "NOT_CHECKED"
+            },
+            "LastOperations": [
+                {
+                    "OperationType": "UPDATE_STACK",
+                    "OperationId": "398c4d88-2a89-4a5a-b2ea-40d1a6b4de43"
+                }
+            ]
+        }
+    ]
+}
