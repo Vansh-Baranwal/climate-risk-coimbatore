@@ -1,111 +1,108 @@
-const API_URL = (import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:3000').replace(/\/$/, '');
+import { API_BASE_URL } from '../config'; // Ensure you have this or use process.env
+
+// Use the VITE_ env var directly if config file doesn't exist, or standard approach
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/';
 
 export const fetchWeather = async () => {
     try {
-        const res = await fetch(`${API_URL}/weather`);
-        if (!res.ok) throw new Error("Failed to fetch weather");
-        return res.json();
-    } catch (error) {
-        console.error(error);
-        // Return mock if failed (for purely frontend dev without backend running)
-        return {
-            normalized: { temp: 30, humidity: 60, rainfall_1h: 5, description: "Mock Rain" },
-            floodProxyIndex: 8
-        };
+        const res = await fetch(`${BASE_URL}weather`);
+        return await res.json();
+    } catch (e) {
+        console.error(e);
+        return null;
     }
 };
 
 export const fetchZones = async () => {
     try {
-        const res = await fetch(`${API_URL}/zones`);
-        if (!res.ok) throw new Error("Failed to fetch zones");
-        return res.json();
-    } catch (error) {
-        console.error(error);
+        const res = await fetch(`${BASE_URL}zones`);
+        return await res.json();
+    } catch (e) {
+        console.error(e);
         return [];
     }
 };
 
 export const calculateFireRisk = async (weather, zone) => {
     try {
-        const res = await fetch(`${API_URL}/risk/fire`, {
-            method: "POST",
+        const res = await fetch(`${BASE_URL}risk/fire`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ weather, zone })
         });
-        return res.json();
-    } catch (e) { console.error(e); return null; }
+        return await res.json();
+    } catch (e) {
+        console.error(e);
+        return null;
+    }
 };
 
 export const calculateDiseaseRisk = async (weather, zone) => {
     try {
-        const res = await fetch(`${API_URL}/risk/disease`, {
-            method: "POST",
+        const res = await fetch(`${BASE_URL}risk/disease`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ weather, zone })
         });
-        return res.json();
-    } catch (e) { console.error(e); return null; }
+        return await res.json();
+    } catch (e) {
+        console.error(e);
+        return null;
+    }
 };
 
-export const fetchTimeline = async (stagnationDays) => {
-    try {
-        const res = await fetch(`${API_URL}/risk/delayed/schedule`, {
-            method: "POST",
-            body: JSON.stringify({ stagnationDays })
-        });
-        return res.json();
-    } catch (e) { console.error(e); return null; }
-};
-
-export const runSimulation = async (zone, weather, action) => {
-    try {
-        const res = await fetch(`${API_URL}/simulation`, {
-            method: "POST",
-            body: JSON.stringify({ zone, weather, action })
-        });
-        return res.json();
-    } catch (e) { console.error(e); return null; }
-}
-
+// --- AUTH & ALERTS ---
 
 export const loginUser = async (username, password) => {
     try {
-        const res = await fetch(`${API_URL}/auth/login`, {
-            method: "POST",
+        const res = await fetch(`${BASE_URL}auth/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password })
         });
-        if (!res.ok) throw new Error("Login failed");
-        return res.json();
-    } catch (e) { console.error(e); return { error: e.message }; }
+        const data = await res.json();
+        if (res.status === 200) return { success: true, ...data };
+        return { success: false, error: data.error };
+    } catch (e) {
+        console.error("Login Error:", e);
+        return { error: "Network Error" };
+    }
 };
 
-export const signupUser = async (username, password) => {
+export const signupUser = async (username, password, email, mobile) => {
     try {
-        const res = await fetch(`${API_URL}/auth/signup`, {
-            method: "POST",
-            body: JSON.stringify({ username, password })
+        const res = await fetch(`${BASE_URL}auth/signup`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password, email, mobile })
         });
-        if (!res.ok) {
-            const data = await res.json();
-            throw new Error(data.error || "Signup failed");
-        }
-        return res.json();
-    } catch (e) { console.error(e); return { error: e.message }; }
+        const data = await res.json();
+        return data; // { success: true, role, msg }
+    } catch (e) {
+        console.error("Signup Error:", e);
+        return { error: "Network Error" };
+    }
 };
 
 export const fetchAlerts = async () => {
     try {
-        const res = await fetch(`${API_URL}/alerts`);
-        if (!res.ok) throw new Error("Failed to fetch alerts");
-        return res.json();
-    } catch (e) { console.error(e); return []; }
+        const res = await fetch(`${BASE_URL}alerts`);
+        return await res.json();
+    } catch (e) {
+        console.error(e);
+        return [];
+    }
 };
 
 export const postAlert = async (alertData) => {
     try {
-        const res = await fetch(`${API_URL}/alerts`, {
-            method: "POST",
+        // alertData = { type, message, severe, zoneId, temp, rain }
+        await fetch(`${BASE_URL}alerts`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(alertData)
         });
-        return res.json();
-    } catch (e) { console.error(e); return null; }
+    } catch (e) {
+        console.error("Post Alert Error:", e);
+    }
 };

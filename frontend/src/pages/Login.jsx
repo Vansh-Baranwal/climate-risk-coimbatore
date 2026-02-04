@@ -73,11 +73,13 @@ const Login = () => {
         setLoading(true);
 
         try {
-            const res = await signupUser(username, password);
+            // Pass email and mobile to API
+            const res = await signupUser(username, password, email, mobile);
             if (res && res.success) {
                 // Auto-login
                 localStorage.setItem('userRole', res.role);
                 localStorage.setItem('username', res.username);
+                alert(res.msg || "Account Created!"); // Show backend confirmation (check email)
                 navigate('/citizen');
             } else {
                 throw new Error(res.error || "Signup Failed");
@@ -184,6 +186,29 @@ const Login = () => {
                         required
                     />
                 </div>
+
+                <div className="input-group">
+                    <label>Mobile Number (Automatic +91)</label>
+                    <input
+                        type="tel"
+                        value={mobile}
+                        onChange={(e) => setMobile(e.target.value)}
+                        placeholder="e.g. 9876543210"
+                        required
+                    />
+                </div>
+
+                <div className="input-group">
+                    <label>Email Address</label>
+                    <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="alerts@example.com"
+                        required
+                    />
+                </div>
+
                 {error && <div className="error-msg">{error}</div>}
 
                 <button type="submit" className="action-btn citizen-btn" disabled={loading}>
