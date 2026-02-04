@@ -65,3 +65,7 @@
     border-left-color: #1e90ff;
     background: #e3f2fd;
 }
+/* Logout Button */
+.header-content { display: flex; align-items: center; gap: 1rem; }
+.logout-btn-citizen { background: rgba(0,0,0,0.5); color: white; border: 1px solid white; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; }
+.logout-btn-citizen:hover { background: white; color: black; }
