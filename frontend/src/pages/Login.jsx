@@ -136,6 +136,14 @@ const Login = () => {
                 </button>
             </form>
 
+            <div className="switch-role-link">
+                {targetRole === 'ADMIN' ? (
+                    <p>Not an Admin? <span onClick={() => { resetForm(); setView('CITIZEN_LOGIN'); }}>Go to Citizen Portal</span></p>
+                ) : (
+                    <p>Admin Access? <span onClick={() => { resetForm(); setView('ADMIN_LOGIN'); }}>Command Center Login</span></p>
+                )}
+            </div>
+
             {targetRole === 'CITIZEN' && (
                 <div className="signup-link">
                     <p>New Resident?</p>
