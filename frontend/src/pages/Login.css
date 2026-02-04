@@ -200,3 +200,7 @@ header h1 {
     font-size: 0.9rem;
     margin-bottom: 1rem;
 }
+/* Switch Role Link */
+.switch-role-link { margin-top: 1rem; font-size: 0.9rem; color: #ccc; }
+.switch-role-link span { color: #4cd137; cursor: pointer; text-decoration: underline; }
+.switch-role-link span:hover { color: white; }
