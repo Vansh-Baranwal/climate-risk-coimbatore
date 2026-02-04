@@ -1,0 +1,43 @@
+.risk-timeline {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: #1e1e2e;
+    border-radius: 8px;
+}
+
+.timeline-container {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+}
+
+.timeline-phase {
+    min-width: 200px;
+    background: #2f3542;
+    padding: 1rem;
+    border-radius: 6px;
+    border-top: 3px solid #74b9ff;
+    flex-shrink: 0;
+}
+
+.timeline-phase h4 {
+    margin: 0.5rem 0;
+    color: white;
+}
+
+.phase-days {
+    font-size: 0.8rem;
+    color: #a4b0be;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.timeline-phase p {
+    font-size: 0.75rem;
+    background: #57606f;
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    margin: 0;
+}
