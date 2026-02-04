@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { fetchAlerts } from '../services/api';
 import './CitizenDashboard.css';
 
 const CitizenDashboard = () => {
     const [alerts, setAlerts] = useState([]);
     const [status, setStatus] = useState('SAFE');
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.clear();
+        navigate('/login');
+    };
 
     const loadAlerts = async () => {
         const data = await fetchAlerts();
@@ -24,7 +31,10 @@ const CitizenDashboard = () => {
     return (
         <div className={`citizen-dashboard ${status.toLowerCase()}`}>
             <header>
-                <h1>Coimbatore Citizen Alert System</h1>
+                <div className="header-content">
+                    <h1>Coimbatore Citizen Alert System</h1>
+                    <button onClick={handleLogout} className="logout-btn-citizen">Logout</button>
+                </div>
                 <div className="status-badge">{status}</div>
             </header>
 

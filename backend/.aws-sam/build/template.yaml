@@ -170,6 +170,29 @@ Resources:
             Method: post
     Metadata:
       SamResourceId: AuthLoginFunction
+  AuthSignupFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: AuthSignupFunction
+      Handler: lambdas/auth/signup.handler
+      Policies:
+      - DynamoDBCrudPolicy:
+          TableName:
+            Ref: UsersTable
+      Environment:
+        Variables:
+          USERS_TABLE:
+            Ref: UsersTable
+      Events:
+        Signup:
+          Type: Api
+          Properties:
+            RestApiId:
+              Ref: ClimateRiskApi
+            Path: /auth/signup
+            Method: post
+    Metadata:
+      SamResourceId: AuthSignupFunction
   AlertBroadcastFunction:
     Type: AWS::Serverless::Function
     Properties:

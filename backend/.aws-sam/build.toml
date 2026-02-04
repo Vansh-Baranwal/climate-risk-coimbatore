@@ -7,6 +7,6 @@ architecture = "x86_64"
 handler = "lambdas/weather/ingest.handler"
 manifest_hash = ""
 packagetype = "Zip"
-functions = ["WeatherIngestFunction", "ZoneProviderFunction", "FireRiskEngineFunction", "DiseaseRiskEngineFunction", "DelayedRiskEvaluatorFunction", "DelayedRiskSchedulerFunction", "DelayedRiskExecutorFunction", "InterventionSimulationFunction", "AuthLoginFunction", "AlertBroadcastFunction"]
+functions = ["WeatherIngestFunction", "ZoneProviderFunction", "FireRiskEngineFunction", "DiseaseRiskEngineFunction", "DelayedRiskEvaluatorFunction", "DelayedRiskSchedulerFunction", "DelayedRiskExecutorFunction", "InterventionSimulationFunction", "AuthLoginFunction", "AuthSignupFunction", "AlertBroadcastFunction"]
 
 [layer_build_definitions]

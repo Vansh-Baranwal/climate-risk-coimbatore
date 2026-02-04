@@ -13,7 +13,7 @@
     border-radius: 12px;
     width: 350px;
     border: 1px solid #333;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     text-align: center;
 }
 
@@ -71,6 +71,18 @@
     color: #ff4757;
     font-size: 0.9rem;
     margin-bottom: 1rem;
+}
+
+.toggle-mode {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+.toggle-mode span {
+    color: #4cd137;
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 .demo-notes {

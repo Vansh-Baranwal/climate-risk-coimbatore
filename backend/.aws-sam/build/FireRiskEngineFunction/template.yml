@@ -164,6 +164,26 @@ Resources:
             Path: /auth/login
             Method: post
 
+  # 9b. Auth Signup
+  AuthSignupFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: lambdas/auth/signup.handler
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref UsersTable
+      Environment:
+        Variables:
+          USERS_TABLE: !Ref UsersTable
+      Events:
+        Signup:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ClimateRiskApi
+            Path: /auth/signup
+            Method: post
+
   # 10. Alert Broadcast
   AlertBroadcastFunction:
     Type: AWS::Serverless::Function

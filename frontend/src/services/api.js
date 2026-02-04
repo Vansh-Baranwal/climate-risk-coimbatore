@@ -78,6 +78,20 @@ export const loginUser = async (username, password) => {
     } catch (e) { console.error(e); return { error: e.message }; }
 };
 
+export const signupUser = async (username, password) => {
+    try {
+        const res = await fetch(`${API_URL}/auth/signup`, {
+            method: "POST",
+            body: JSON.stringify({ username, password })
+        });
+        if (!res.ok) {
+            const data = await res.json();
+            throw new Error(data.error || "Signup failed");
+        }
+        return res.json();
+    } catch (e) { console.error(e); return { error: e.message }; }
+};
+
 export const fetchAlerts = async () => {
     try {
         const res = await fetch(`${API_URL}/alerts`);

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { fetchWeather, fetchZones, calculateFireRisk, calculateDiseaseRisk, postAlert } from '../services/api';
 import MultiplierCard from '../components/multipliers/MultiplierCard';
 import RiskTimeline from '../components/timeline/RiskTimeline';
@@ -13,6 +14,12 @@ const Dashboard = () => {
     const [fireRisk, setFireRisk] = useState(null);
     const [diseaseRisk, setDiseaseRisk] = useState(null);
     const [mitigationFactor, setMitigationFactor] = useState(1.0);
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.clear();
+        navigate('/login');
+    };
 
     const updateInfrastructure = (field, value) => {
         if (!selectedZone) return;
@@ -123,7 +130,10 @@ const Dashboard = () => {
     return (
         <div className="dashboard">
             <header>
-                <h1>Coimbatore Risk Intelligence</h1>
+                <div className="header-left">
+                    <h1>Coimbatore Risk Intelligence</h1>
+                    <button onClick={handleLogout} className="logout-btn">Logout</button>
+                </div>
                 <div className="weather-bar">
                     <div className="weather-input-group">
                         <label>Temp (°C)</label>
