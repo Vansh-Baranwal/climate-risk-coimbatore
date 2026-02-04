@@ -67,6 +67,22 @@ export const fetchTimeline = async (stagnationDays) => {
     }
 };
 
+// --- SIMULATION ---
+
+export const runSimulation = async (zone, weather, action) => {
+    try {
+        const res = await fetch(`${BASE_URL}simulation`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ zone, weather, action })
+        });
+        return await res.json();
+    } catch (e) {
+        console.error(e);
+        return null;
+    }
+};
+
 // --- AUTH & ALERTS ---
 
 export const loginUser = async (username, password) => {
